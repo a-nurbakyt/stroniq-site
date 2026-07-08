@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ветровая нагрузка по СП РК EN 1991-1-4: методика расчёта от vb до давления по зонам</title>
+<meta name="description" content="Как рассчитать ветровую нагрузку по СП РК EN 1991-1-4 (Еврокод, Казахстан): базовая скорость ветра, категории местности, пиковое давление qp(z), коэффициенты cpe по зонам стен и кровли.">
+<link rel="canonical" href="https://stroniq.kz/blog/vetrovaya-nagruzka-sp-rk-en-1991-1-4.html">
+<meta property="og:title" content="Ветровая нагрузка по СП РК EN 1991-1-4: методика расчёта">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+ "headline":"Ветровая нагрузка по СП РК EN 1991-1-4: методика расчёта",
+ "inLanguage":"ru","author":{"@type":"Person","name":"Айгуль Нурбакыт"},
+ "about":"Ветровая нагрузка на здание по СП РК EN 1991-1-4 (Еврокод 1, Казахстан)"}
+</script>
+</head>
+<body>
+<div class="sheet">
+
+<header class="stamp">
+  <div class="brand"><a href="../index.html">STRONIQ<span class="dot">.</span></a></div>
+  <nav>
+    <a href="../index.html#stati">Статьи</a>
+    <a class="cta" href="https://stroniq-constcalc.streamlit.app/" rel="noopener">Открыть калькулятор</a>
+  </nav>
+</header>
+
+<div class="inner">
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="../index.html#stati">Статьи</a> / Ветровая нагрузка</div>
+
+<article>
+<h1>Ветровая нагрузка по СП РК EN 1991-1-4: методика от v<sub>b</sub> до давления по зонам</h1>
+<div class="meta">СП РК EN 1991-1-4:2005/2011 · для инженеров-расчётчиков · читать ~6 минут</div>
+
+<p>Сбор ветровой нагрузки по Еврокоду заметно отличается от привычного СНиП: вместо
+нормативного давления по районам — базовая скорость ветра, логарифмический профиль
+по высоте и аэродинамические коэффициенты по зонам поверхности. Разберём цепочку
+расчёта по СП РК EN 1991-1-4 целиком.</p>
+
+<h2>Цепочка расчёта</h2>
+<div class="frm">v<sub>b</sub> → v<sub>m</sub>(z) → q<sub>p</sub>(z) → w<sub>e</sub> = q<sub>p</sub>(z<sub>e</sub>) · c<sub>pe</sub></div>
+
+<h3>Шаг 1. Базовая скорость ветра v<sub>b</sub></h3>
+<p>Определяется по карте ветрового районирования РК для площадки строительства:
+v<sub>b</sub> = c<sub>dir</sub> · c<sub>season</sub> · v<sub>b,0</sub>. Для большинства задач
+направленный и сезонный коэффициенты равны 1,0, и v<sub>b</sub> = v<sub>b,0</sub> вашей
+ветровой зоны.</p>
+
+<h3>Шаг 2. Средняя скорость v<sub>m</sub>(z) и категория местности</h3>
+<p>Профиль скорости по высоте зависит от шероховатости: v<sub>m</sub>(z) = c<sub>r</sub>(z) · c<sub>o</sub>(z) · v<sub>b</sub>.
+Коэффициент шероховатости c<sub>r</sub>(z) считается через логарифм от z/z<sub>0</sub>,
+где z<sub>0</sub> — параметр шероховатости категории местности (от открытого моря 0
+до плотной городской застройки IV). Выбор категории — самое частое место споров с
+экспертизой: занизишь категорию — перезаложишься, завысишь — не защитишь.</p>
+
+<h3>Шаг 3. Пиковое давление q<sub>p</sub>(z)</h3>
+<p>Учитывает пульсации через интенсивность турбулентности I<sub>v</sub>(z):</p>
+<div class="frm">q<sub>p</sub>(z) = [1 + 7·I<sub>v</sub>(z)] · ½ · ρ · v<sub>m</sub>²(z)</div>
+<p>где ρ = 1,25 кг/м³ — плотность воздуха. Это давление — общее для всех поверхностей
+здания на данной высоте; дальше оно распределяется по зонам коэффициентами.</p>
+
+<h3>Шаг 4. Аэродинамические коэффициенты c<sub>pe</sub> и давление по зонам</h3>
+<p>Стены делятся на зоны A–E (наветренная D, заветренная E, боковые A–C), кровля —
+на свои зоны (для плоской F, G, H, I) в зависимости от формы. Для каждой зоны:</p>
+<div class="frm">w<sub>e</sub> = q<sub>p</sub>(z<sub>e</sub>) · c<sub>pe</sub></div>
+<p>Знак важен: положительное давление — на поверхность, отрицательное — отсос.
+На кровле почти всегда отсос, и для лёгких кровель именно он определяет крепёж.
+Полное воздействие — с учётом внутреннего давления c<sub>pi</sub>:
+w = q<sub>p</sub>·(c<sub>pe</sub> − c<sub>pi</sub>).</p>
+
+<h2>Что часто упускают</h2>
+<ul>
+  <li><strong>Второе направление ветра.</strong> Здание обдувается и вдоль, и поперёк —
+  зоны и коэффициенты для направлений X и Y разные, считать нужно оба;</li>
+  <li><strong>Зависимость c<sub>pe</sub> от отношения h/d</strong> — для одних и тех же
+  зон коэффициенты меняются с пропорциями здания;</li>
+  <li><strong>Внутреннее давление c<sub>pi</sub></strong> — для зданий с проёмами
+  добавляет к отсосу и может решать для крепежа ограждения;</li>
+  <li><strong>Коэффициенты сочетаний для ветра</strong>: ψ<sub>0</sub> = 0,6;
+  ψ<sub>1</sub> = 0,2; ψ<sub>2</sub> = 0.</li>
+</ul>
+
+<div class="appbox">
+  <p><strong>Stroniq считает всю цепочку за пару минут:</strong> обе оси обдува, зоны стен
+  и кровли со схемами, q<sub>p</sub>(z), таблицы давлений и отчёт PDF/Word/Excel с ходом
+  расчёта по пунктам нормы.</p>
+  <a class="btn primary" href="https://stroniq-constcalc.streamlit.app/" rel="noopener">Рассчитать ветровую нагрузку онлайн →</a>
+</div>
+
+<p><em>Материал носит методический характер и не заменяет норматив. Карту ветровых зон,
+значения v<sub>b,0</sub> и коэффициенты принимайте по действующей редакции
+СП РК EN 1991-1-4 с национальным приложением.</em></p>
+</article>
+</div>
+
+<footer class="stamp">
+  <div class="row">
+    <div class="cell"><span class="lbl">Проект</span>Stroniq — сбор нагрузок по СП РК EN</div>
+    <div class="cell"><span class="lbl">Раздел</span>Статьи · ветер</div>
+    <div class="cell"><span class="lbl">Калькулятор</span><a href="https://stroniq-constcalc.streamlit.app/" rel="noopener">открыть →</a></div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

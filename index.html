@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stroniq — сбор нагрузок по СП РК EN онлайн: ветер и снег с отчётом</title>
+<meta name="description" content="Бесплатный калькулятор сбора нагрузок по СП РК (Еврокоды): ветровая нагрузка EN 1991-1-4 и снеговая нагрузка EN 1991-1-3. Зоны Казахстана, коэффициенты, схемы, отчёт PDF/Word/Excel.">
+<link rel="canonical" href="https://stroniq.kz/">
+<meta property="og:title" content="Stroniq — сбор нагрузок по СП РК EN онлайн">
+<meta property="og:description" content="Ветровая и снеговая нагрузка по СП РК за пару минут. Схемы, коэффициенты, отчёт с ходом расчёта.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Stroniq",
+ "applicationCategory":"EngineeringApplication","operatingSystem":"Web",
+ "description":"Калькулятор сбора нагрузок по СП РК EN: ветер (EN 1991-1-4) и снег (EN 1991-1-3) с отчётом.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"KZT"},
+ "url":"https://stroniq.kz/"}
+</script>
+</head>
+<body>
+<div class="sheet">
+
+<header class="stamp">
+  <div class="brand"><a href="/">STRONIQ<span class="dot">.</span></a></div>
+  <nav>
+    <a href="#moduli">Модули</a>
+    <a href="#stati">Статьи</a>
+    <a class="cta" href="https://stroniq-constcalc.streamlit.app/" rel="noopener">Открыть калькулятор</a>
+  </nav>
+</header>
+
+<div class="inner">
+
+<div class="hero">
+  <div class="eyebrow">СП РК EN 1991 · Еврокоды Казахстана</div>
+  <h1>Сбор нагрузок по СП РК — за минуты, а не за полдня</h1>
+  <p class="lead">Бесплатный онлайн-калькулятор ветровой и снеговой нагрузки по казахстанским
+  нормам. Зоны, коэффициенты, схемы приложения нагрузки и отчёт с ходом расчёта —
+  PDF, Word, Excel. Сделан практикующим инженером-расчётчиком.</p>
+  <div class="actions">
+    <a class="btn primary" href="https://stroniq-constcalc.streamlit.app/" rel="noopener">Рассчитать нагрузку</a>
+    <a class="btn ghost" href="blog/raschet-snegovoy-nagruzki-sp-rk-en-1991-1-3.html">Как считается снег →</a>
+  </div>
+  <div class="formula">s = μ<sub>i</sub> · C<sub>e</sub> · C<sub>t</sub> · s<sub>k</sub>&nbsp;&nbsp;·&nbsp;&nbsp;w<sub>e</sub> = q<sub>p</sub>(z<sub>e</sub>) · c<sub>pe</sub>&nbsp;&nbsp;— всё по СП РК EN, с выводом каждого коэффициента</div>
+</div>
+
+<section id="moduli">
+  <span class="kicker">Что считает</span>
+  <h2>Два модуля — обе климатические нагрузки</h2>
+  <div class="grid2">
+    <div class="card">
+      <span class="tag">СП РК EN 1991-1-4:2005/2011</span>
+      <h3>🌬️ Ветровая нагрузка</h3>
+      <p>Полный сбор ветровой нагрузки на здание по двум направлениям:</p>
+      <ul>
+        <li>ветровые зоны Казахстана, базовая скорость v<sub>b</sub></li>
+        <li>категории местности, пиковое давление q<sub>p</sub>(z)</li>
+        <li>аэродинамические коэффициенты c<sub>pe</sub> по зонам стен и кровли</li>
+        <li>схемы зон для плоской, одно-, двускатной и вальмовой кровли</li>
+      </ul>
+      <a class="more" href="blog/vetrovaya-nagruzka-sp-rk-en-1991-1-4.html">Методика расчёта ветра →</a>
+    </div>
+    <div class="card">
+      <span class="tag">СП РК EN 1991-1-3:2003/2011</span>
+      <h3>❄️ Снеговая нагрузка</h3>
+      <p>Снег на кровлю с учётом формы и локальных эффектов:</p>
+      <ul>
+        <li>снеговые зоны РК, характеристическое значение s<sub>k</sub></li>
+        <li>коэффициенты формы μ, все схемы снегового мешка на двускатке</li>
+        <li>ендова многопролётной, цилиндрические кровли</li>
+        <li>перепад высот, заграждения, нависание, чрезвычайный снег s<sub>Ad</sub></li>
+      </ul>
+      <a class="more" href="blog/raschet-snegovoy-nagruzki-sp-rk-en-1991-1-3.html">Методика расчёта снега →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="kicker">Почему инженеры пользуются</span>
+  <h2>Не «чёрный ящик», а расчётная записка</h2>
+  <div class="grid2">
+    <div class="card"><h3>Ход расчёта виден</h3><p>Каждый коэффициент — со ссылкой на пункт
+    нормы и подстановкой чисел. Результат можно проверить руками и защитить перед экспертизой.</p></div>
+    <div class="card"><h3>Отчёт сразу в записку</h3><p>PDF, Word и Excel с формулами, таблицами
+    и схемами приложения нагрузки — вставляется в раздел «Сбор нагрузок» без переделки.</p></div>
+  </div>
+</section>
+
+<section id="stati">
+  <span class="kicker">Разборы по нормам</span>
+  <h2>Статьи: как считать по СП РК EN</h2>
+  <div class="posts">
+    <a href="blog/raschet-snegovoy-nagruzki-sp-rk-en-1991-1-3.html">
+      <span>Расчёт снеговой нагрузки по СП РК EN 1991-1-3: пошаговый пример</span>
+      <span class="q">снеговая нагрузка · СП РК</span>
+    </a>
+    <a href="blog/vetrovaya-nagruzka-sp-rk-en-1991-1-4.html">
+      <span>Ветровая нагрузка по СП РК EN 1991-1-4: методика от v<sub>b</sub> до давления по зонам</span>
+      <span class="q">ветровая нагрузка · Еврокод</span>
+    </a>
+  </div>
+</section>
+
+</div><!-- /inner -->
+
+<footer class="stamp">
+  <div class="row">
+    <div class="cell"><span class="lbl">Проект</span>Stroniq — платформа сбора нагрузок по СП РК EN</div>
+    <div class="cell"><span class="lbl">Разработала</span>Айгуль Нурбакыт, инженер-строитель</div>
+    <div class="cell"><span class="lbl">Калькулятор</span><a href="https://stroniq-constcalc.streamlit.app/" rel="noopener">открыть →</a></div>
+  </div>
+  <div class="row">
+    <div class="cell"><span class="lbl">Нормы</span>СП РК EN 1991-1-3 · СП РК EN 1991-1-4 · СП РК EN 1990</div>
+    <div class="cell"><span class="lbl">Стадия</span>Беспл. бета</div>
+    <div class="cell"><span class="lbl">Лист</span>№ 1 · stroniq.kz</div>
+  </div>
+</footer>
+
+</div><!-- /sheet -->
+</body>
+</html>

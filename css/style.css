@@ -1,0 +1,128 @@
+/* ═══════════════════════════════════════════════════════════════
+   Stroniq — статический сайт. Визуальный язык: чертёжный лист.
+   Палитра: бумага #F4F6F3 · тушь #1B2A32 · чертёжная синь #164B9E
+            · снег/лёд #DDE9F2 · сетка миллиметровки #E3E8E1
+   Шрифты: Unbounded (дисплей, дозированно) · Manrope (текст)
+           · JetBrains Mono (формулы, данные, штамп)
+   Подпись дизайна: рамка листа + штамп, как на КМ-чертеже.
+   ═══════════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root{
+  --paper:#F4F6F3; --ink:#1B2A32; --blue:#164B9E; --ice:#DDE9F2;
+  --grid:#E3E8E1; --muted:#5A6B72; --line:#C9D2CC;
+  --disp:'Unbounded',sans-serif; --body:'Manrope',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:var(--body);color:var(--ink);background:var(--paper);
+  /* миллиметровка */
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  line-height:1.65;font-size:17px;
+}
+/* Рамка чертёжного листа */
+.sheet{max-width:1080px;margin:24px auto;background:#fff;
+  border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(27,42,50,.12);}
+.inner{padding:0 48px}
+@media(max-width:720px){.inner{padding:0 20px}.sheet{margin:10px}}
+
+/* Шапка-штамп */
+header.stamp{display:flex;justify-content:space-between;align-items:stretch;
+  border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:13px}
+header.stamp .brand{padding:14px 48px;font-family:var(--disp);font-weight:700;
+  font-size:20px;letter-spacing:.04em}
+header.stamp .brand a{color:var(--ink);text-decoration:none}
+header.stamp .brand .dot{color:var(--blue)}
+header.stamp nav{display:flex}
+header.stamp nav a{display:flex;align-items:center;padding:0 18px;color:var(--ink);
+  text-decoration:none;border-left:1px solid var(--ink)}
+header.stamp nav a:hover,header.stamp nav a:focus-visible{background:var(--ice)}
+header.stamp nav a.cta{background:var(--blue);color:#fff;font-weight:600}
+header.stamp nav a.cta:hover{background:#0F3B80}
+@media(max-width:720px){header.stamp{flex-direction:column}
+  header.stamp .brand{padding:12px 20px}
+  header.stamp nav a{flex:1;justify-content:center;padding:10px 8px;border-left:0;border-top:1px solid var(--ink)}}
+
+/* Герой */
+.hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
+.hero .eyebrow{font-family:var(--mono);font-size:13px;color:var(--blue);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4.6vw,44px);
+  line-height:1.18;max-width:18ch}
+.hero p.lead{margin-top:20px;max-width:56ch;font-size:19px;color:var(--muted)}
+.hero .actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 26px;font-weight:700;text-decoration:none;
+  font-family:var(--body);border:2px solid var(--ink)}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.primary:hover{background:#0F3B80;border-color:#0F3B80}
+.btn.ghost{color:var(--ink);background:#fff}
+.btn.ghost:hover{background:var(--ice)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* Формула в герое — как строка из записки */
+.formula{margin-top:34px;font-family:var(--mono);font-size:14px;color:var(--muted);
+  border-left:3px solid var(--blue);padding:8px 14px;background:var(--ice);max-width:640px;overflow-x:auto;white-space:nowrap}
+
+/* Секции */
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{font-family:var(--disp);font-weight:500;font-size:clamp(20px,3vw,28px);margin-bottom:8px}
+.kicker{font-family:var(--mono);font-size:12px;color:var(--blue);
+  letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+.card{border:1.5px solid var(--ink);padding:24px;background:#fff}
+.card h3{font-size:19px;margin-bottom:8px}
+.card .tag{font-family:var(--mono);font-size:12px;color:var(--blue)}
+.card p{color:var(--muted);font-size:15.5px;margin-top:8px}
+.card ul{margin:12px 0 0 18px;color:var(--muted);font-size:15px}
+.card a.more{display:inline-block;margin-top:14px;color:var(--blue);font-weight:700;text-decoration:none}
+.card a.more:hover{text-decoration:underline}
+
+/* Список статей */
+.posts{margin-top:22px;display:grid;gap:0;border:1.5px solid var(--ink);background:#fff}
+.posts a{display:flex;justify-content:space-between;gap:18px;padding:18px 22px;
+  color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.posts a:last-child{border-bottom:0}
+.posts a:hover{background:var(--ice)}
+.posts .q{font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
+@media(max-width:720px){.posts a{flex-direction:column;gap:6px}.posts .q{white-space:normal}}
+
+/* Статья */
+article{padding:56px 0}
+article h1{font-family:var(--disp);font-weight:700;font-size:clamp(24px,3.6vw,36px);line-height:1.22;max-width:26ch}
+article .meta{font-family:var(--mono);font-size:13px;color:var(--muted);margin:14px 0 34px}
+article h2{margin:40px 0 12px}
+article h3{margin:28px 0 10px;font-size:19px}
+article p{margin:14px 0;max-width:72ch}
+article ul,article ol{margin:14px 0 14px 22px;max-width:70ch}
+article li{margin:6px 0}
+article .frm{font-family:var(--mono);font-size:15px;background:var(--ice);
+  border-left:3px solid var(--blue);padding:12px 16px;margin:18px 0;overflow-x:auto}
+article table{border-collapse:collapse;margin:18px 0;font-size:15px;width:100%;max-width:640px}
+article th,article td{border:1px solid var(--ink);padding:8px 12px;text-align:left}
+article th{background:var(--ice);font-family:var(--mono);font-size:13px}
+article .note{border:1.5px dashed var(--blue);padding:14px 18px;margin:22px 0;
+  background:#fff;font-size:15.5px}
+.appbox{border:2px solid var(--blue);background:var(--ice);padding:22px;margin:34px 0}
+.appbox p{margin:0 0 12px}
+
+/* Штамп-подвал (title block) */
+footer.stamp{border-top:2px solid var(--ink);font-family:var(--mono);font-size:12.5px}
+footer.stamp .row{display:grid;grid-template-columns:2fr 1fr 1fr;border-bottom:1px solid var(--ink)}
+footer.stamp .row:last-child{border-bottom:0}
+footer.stamp .cell{padding:10px 16px;border-right:1px solid var(--ink)}
+footer.stamp .cell:last-child{border-right:0}
+footer.stamp .lbl{display:block;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+footer.stamp a{color:var(--blue);text-decoration:none}
+footer.stamp a:hover{text-decoration:underline}
+@media(max-width:720px){footer.stamp .row{grid-template-columns:1fr}
+  footer.stamp .cell{border-right:0;border-bottom:1px solid var(--line)}}
+.breadcrumbs{font-family:var(--mono);font-size:13px;padding-top:26px}
+.breadcrumbs a{color:var(--blue);text-decoration:none}
