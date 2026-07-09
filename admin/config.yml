@@ -1,0 +1,22 @@
+# Админка статей Stroniq (Sveltia CMS, совместим с Decap)
+backend:
+  name: github
+  repo: a-nurbakyt/stroniq-site
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "posts"
+    label: "Статьи"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Описание (1–2 предложения, для карточки и Google)", name: "description", widget: "string" }
+      - { label: "Норматив (подпись на карточке)", name: "norm", widget: "string", default: "СП РК EN 1991-1-3" }
+      - { label: "Дата", name: "date", widget: "datetime" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "Текст статьи", name: "body", widget: "markdown" }

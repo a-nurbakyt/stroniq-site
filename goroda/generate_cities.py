@@ -26,7 +26,7 @@ CITIES = {
     # ... добавь 15–20 городов из своего маппинга
 }
 
-SITE = "https://stroniq.kz"
+SITE = "https://stroniq.com"
 APP = "https://stroniq-constcalc.streamlit.app/"
 
 PAGE = """<!DOCTYPE html>

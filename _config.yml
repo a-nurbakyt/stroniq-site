@@ -1,0 +1,21 @@
+# Настройки сайта Stroniq (Jekyll на GitHub Pages)
+title: Stroniq — сбор нагрузок по СП РК EN
+description: Бесплатный калькулятор ветровой и снеговой нагрузки по СП РК (Еврокоды) с отчётом PDF/Word/Excel
+lang: ru
+url: "https://a-nurbakyt.github.io"
+# ВАЖНО: когда подключишь домен stroniq.com — поменяй две строки выше/ниже:
+#   url: "https://stroniq.com"   и   baseurl: ""
+baseurl: "/stroniq-site"
+
+app_url: "https://stroniq-constcalc.streamlit.app/"
+
+permalink: /blog/:title/
+markdown: kramdown
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+exclude:
+  - README-деплой.md
+  - goroda/generate_cities.py

@@ -126,3 +126,31 @@ footer.stamp a:hover{text-decoration:underline}
   footer.stamp .cell{border-right:0;border-bottom:1px solid var(--line)}}
 .breadcrumbs{font-family:var(--mono);font-size:13px;padding-top:26px}
 .breadcrumbs a{color:var(--blue);text-decoration:none}
+
+/* ── Редизайн: карточки статей и факты (главная-лайт) ───────── */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+@media(max-width:720px){.grid3{grid-template-columns:1fr}}
+.fact{border-left:3px solid var(--blue);background:#fff;padding:16px 18px}
+.fact b{display:block;font-size:16px;margin-bottom:4px}
+.fact span{color:var(--muted);font-size:14px}
+
+.postcards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+@media(max-width:900px){.postcards{grid-template-columns:1fr}}
+.postcard{display:flex;flex-direction:column;gap:8px;border:1.5px solid var(--ink);
+  background:#fff;padding:20px;color:var(--ink);text-decoration:none;
+  transition:transform .12s ease, box-shadow .12s ease}
+.postcard:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(27,42,50,.15)}
+@media (prefers-reduced-motion:reduce){.postcard{transition:none}.postcard:hover{transform:none}}
+.postcard h3{font-size:17px;line-height:1.35}
+.postcard p{color:var(--muted);font-size:14px;flex:1}
+.postcard .tag{font-family:var(--mono);font-size:11.5px;color:var(--blue)}
+.postcard .more{color:var(--blue);font-weight:700;font-size:14px}
+
+/* ── Калькулятор (перенесено из calc.html) ───────────────────── */
+.calcwrap{border:2px solid var(--ink);margin:22px 0 28px;background:#fff}
+.calcwrap iframe{display:block;width:100%;height:82vh;min-height:640px;border:0}
+.calcbar{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:10px 16px;border-bottom:2px solid var(--ink);
+  font-family:var(--mono);font-size:13px;flex-wrap:wrap}
+.calcbar a{color:var(--blue);text-decoration:none;font-weight:600}
+.calcbar a:hover{text-decoration:underline}
