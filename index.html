@@ -5,18 +5,88 @@ description: Бесплатный калькулятор ветровой (EN 19
 ---
 <div class="inner">
 
-<div class="hero">
-  <div class="eyebrow">СП РК EN 1991 · Еврокоды Казахстана</div>
-  <h1>Сбор нагрузок — за минуты, а не за полдня</h1>
-  <p class="lead">Бесплатный калькулятор ветровой и снеговой нагрузки по СП РК.
-  Схемы, коэффициенты и отчёт с ходом расчёта.</p>
-  <div class="actions">
-    <a class="btn primary" href="{{ '/calc.html' | relative_url }}">Рассчитать нагрузку</a>
-    <a class="btn ghost" href="{{ '/blog/' | relative_url }}">Статьи по нормам</a>
+<div class="hero2">
+  <div>
+    <div class="eyebrow">СП РК EN 1991 · Еврокоды Казахстана</div>
+    <h1>Сбор нагрузок — за минуты, а не за полдня</h1>
+    <p class="lead">Бесплатный калькулятор ветровой и снеговой нагрузки по СП РК.
+    Схемы, коэффициенты и отчёт с ходом расчёта — как в записке.</p>
+    <div class="actions">
+      <a class="btn primary" href="{{ '/calc.html' | relative_url }}">Рассчитать нагрузку</a>
+      <a class="btn ghost" href="{{ '/about.html' | relative_url }}">О проекте</a>
+    </div>
+  </div>
+
+  <div class="heroviz" aria-hidden="true">
+    <!-- Анимированная схема: каркас под ветром и снегом -->
+    <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" role="img">
+      <rect width="560" height="420" fill="#fff"/>
+      <!-- миллиметровка -->
+      <g stroke="#E3E8E1" stroke-width="1">
+        <path d="M0 60H560M0 120H560M0 180H560M0 240H560M0 300H560M0 360H560"/>
+        <path d="M60 0V420M120 0V420M180 0V420M240 0V420M300 0V420M360 0V420M420 0V420M480 0V420"/>
+      </g>
+      <!-- земля -->
+      <line x1="60" y1="352" x2="500" y2="352" stroke="#1B2A32" stroke-width="2.5"/>
+      <g stroke="#1B2A32" stroke-width="1.4">
+        <path d="M80 352l-12 14M120 352l-12 14M160 352l-12 14M200 352l-12 14M240 352l-12 14M280 352l-12 14M320 352l-12 14M360 352l-12 14M400 352l-12 14M440 352l-12 14M480 352l-12 14"/>
+      </g>
+      <!-- каркас здания (прорисовывается) -->
+      <path class="draw" d="M160 352V232L300 176L440 232V352" fill="none"
+            stroke="#164B9E" stroke-width="4" stroke-linejoin="round"/>
+      <path class="draw" d="M160 300H440M230 352V204M370 352V204M300 352V176"
+            fill="none" stroke="#164B9E" stroke-width="1.6" style="animation-delay:.9s"/>
+      <!-- линии ветра -->
+      <g stroke="#5A8ED6" stroke-width="2.4" fill="none">
+        <path class="windline" d="M40 236H140"/>
+        <path class="windline" d="M28 272H140" style="animation-delay:.3s"/>
+        <path class="windline" d="M46 308H140" style="animation-delay:.6s"/>
+      </g>
+      <g fill="#5A8ED6">
+        <path d="M140 236l-12-6v12z"/><path d="M140 272l-12-6v12z"/><path d="M140 308l-12-6v12z"/>
+      </g>
+      <!-- стрелки снеговой нагрузки на скаты -->
+      <g class="loadarrow" stroke="#164B9E" stroke-width="2" fill="#164B9E">
+        <path d="M212 166v22"/><path d="M212 192l-5-8h10z"/>
+        <path d="M258 148v22"/><path d="M258 174l-5-8h10z"/>
+        <path d="M342 148v22"/><path d="M342 174l-5-8h10z"/>
+        <path d="M388 166v22"/><path d="M388 192l-5-8h10z"/>
+      </g>
+      <!-- снежинки -->
+      <g fill="#8FB6DB">
+        <circle class="flake"    cx="200" cy="70" r="4"/>
+        <circle class="flake f2" cx="260" cy="52" r="3"/>
+        <circle class="flake f3" cx="330" cy="66" r="4"/>
+        <circle class="flake f4" cx="390" cy="48" r="3"/>
+        <circle class="flake f2" cx="300" cy="40" r="2.6" style="animation-delay:2.8s"/>
+        <circle class="flake f3" cx="230" cy="44" r="2.6" style="animation-delay:3.6s"/>
+      </g>
+      <!-- подписи -->
+      <g font-family="JetBrains Mono,monospace" font-size="13" fill="#1B2A32">
+        <text x="40" y="212">w = qp(z)·cpe</text>
+        <text x="330" y="120">s = μ·Ce·Ct·sk</text>
+      </g>
+    </svg>
   </div>
 </div>
 
-<section id="moduli">
+<section class="reveal" id="about-teaser">
+  <span class="kicker">О проекте</span>
+  <h2>Инструмент расчётчика — от расчётчика</h2>
+  <div class="grid2" style="margin-top:18px">
+    <p style="color:var(--muted);font-size:17px;max-width:58ch">Stroniq делает
+    практикующий инженер-строитель из Алматы — из собственной усталости от ручного
+    сбора нагрузок под каждый объект. Никакого «чёрного ящика»: каждый коэффициент
+    со ссылкой на пункт СП РК EN, каждый результат можно проверить и защитить.</p>
+    <div>
+      <div class="fact"><b>Бесплатно и без регистрации</b><span>считайте сразу, отчёт — за email</span></div>
+      <div class="fact" style="margin-top:12px"><b>Ветер + снег уже работают</b><span>дальше — сочетания и сейсмика</span></div>
+    </div>
+  </div>
+  <p style="margin-top:20px"><a class="more" href="{{ '/about.html' | relative_url }}" style="color:var(--blue);font-weight:700;text-decoration:none">История и планы проекта →</a></p>
+</section>
+
+<section class="reveal" id="moduli">
   <span class="kicker">Модули</span>
   <div class="grid2">
     <div class="card">
@@ -34,17 +104,8 @@ description: Бесплатный калькулятор ветровой (EN 19
   </div>
 </section>
 
-<section>
-  <span class="kicker">Почему Stroniq</span>
-  <div class="grid3">
-    <div class="fact"><b>Ход расчёта виден</b><span>каждый коэффициент — со ссылкой на пункт нормы</span></div>
-    <div class="fact"><b>Отчёт в записку</b><span>PDF · Word · Excel со схемами и формулами</span></div>
-    <div class="fact"><b>Бесплатно</b><span>сделан практикующим расчётчиком, без регистрации</span></div>
-  </div>
-</section>
-
-<section id="stati">
-  <span class="kicker">Статьи</span>
+<section class="reveal" id="stati">
+  <span class="kicker">Публикации</span>
   <h2>Разборы по нормам</h2>
   <div class="postcards">
     {% for post in site.posts limit:3 %}
@@ -56,7 +117,12 @@ description: Бесплатный калькулятор ветровой (EN 19
     </a>
     {% endfor %}
   </div>
-  <p style="margin-top:22px"><a class="btn ghost" href="{{ '/blog/' | relative_url }}">Все статьи</a></p>
+  <p style="margin-top:22px"><a class="btn ghost" href="{{ '/blog/' | relative_url }}">Все публикации</a></p>
 </section>
+
+<div class="ctastrip reveal">
+  <h2>Посчитайте ветер и снег для своего объекта прямо сейчас</h2>
+  <a class="btn" href="{{ '/calc.html' | relative_url }}">Открыть калькулятор</a>
+</div>
 
 </div>
