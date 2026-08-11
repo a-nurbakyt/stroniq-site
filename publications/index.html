@@ -1,0 +1,33 @@
+---
+layout: default
+title: "Публикации — разборы нормативов и расчётов по СП РК EN"
+description: "Инженерные разборы, нормативные материалы и практические заметки по проектированию строительных конструкций: ветровые и снеговые нагрузки, коэффициенты, примеры расчёта."
+permalink: /publications/
+---
+<div class="inner">
+  <div class="breadcrumbs"><a href="{{ '/' | relative_url }}">Stroniq</a> / Публикации</div>
+  <div class="pagehead">
+    <span class="kicker">Публикации</span>
+    <h1 style="margin-top:12px">Инженерные разборы и нормативные материалы</h1>
+    <p class="lead">Как считается нагрузка, откуда берутся коэффициенты и на какие пункты
+    нормы они опираются — с примерами из проектной практики.</p>
+  </div>
+
+  <div class="pubindex">
+    {% for post in site.posts %}
+    <a class="pubrow" href="{{ post.url | relative_url }}">
+      <span class="cat">{{ post.category | default: "НОРМЫ" }}</span>
+      <div>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.description }}</p>
+      </div>
+      <span class="meta">{{ post.date | date: "%d.%m.%Y" }}<br>{{ post.reading_time | default: 7 }} мин</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div style="padding:52px 0 72px">
+    <p class="lead" style="font-size:16px">Материалы дополняются. Разбор конкретной задачи
+    из вашей практики — <a href="mailto:nurbakyt.aigul@gmail.com" style="color:var(--accent)">напишите</a>.</p>
+  </div>
+</div>

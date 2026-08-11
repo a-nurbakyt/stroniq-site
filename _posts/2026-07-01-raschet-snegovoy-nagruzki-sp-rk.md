@@ -1,8 +1,12 @@
 ---
-layout: post
+layout: publication
 title: "Расчёт снеговой нагрузки по СП РК EN 1991-1-3: пошаговый пример"
 description: "Формула s = μ·Ce·Ct·sk, коэффициент формы, три схемы снегового мешка на двускатке и пример с числами."
 norm: "СП РК EN 1991-1-3"
+category: "РАСЧЁТЫ"
+reading_time: 7
+calc: "https://stroniq-constcalc.streamlit.app/%D0%A1%D0%BD%D0%B5%D0%B3"
+calc_title: "Снеговая нагрузка по СП РК EN 1991-1-3"
 date: 2026-07-01
 ---
 

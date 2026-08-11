@@ -16,7 +16,11 @@ collections:
     fields:
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Описание (1–2 предложения, для карточки и Google)", name: "description", widget: "string" }
-      - { label: "Норматив (подпись на карточке)", name: "norm", widget: "string", default: "СП РК EN 1991-1-3" }
+      - { label: "Норматив", name: "norm", widget: "string", default: "СП РК EN 1991-1-3" }
+      - { label: "Категория", name: "category", widget: "select", options: ["НОРМЫ", "РАСЧЁТЫ", "ПРАКТИКА"], default: "НОРМЫ" }
+      - { label: "Время чтения, мин", name: "reading_time", widget: "number", default: 7, value_type: "int" }
+      - { label: "Ссылка на калькулятор (необязательно)", name: "calc", widget: "select", required: false, options: ["https://stroniq-constcalc.streamlit.app/%D0%92%D0%B5%D1%82%D0%B5%D1%80", "https://stroniq-constcalc.streamlit.app/%D0%A1%D0%BD%D0%B5%D0%B3"] }
+      - { label: "Название калькулятора (для блока CTA)", name: "calc_title", widget: "string", required: false }
       - { label: "Дата", name: "date", widget: "datetime" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "publication" }
       - { label: "Текст статьи", name: "body", widget: "markdown" }

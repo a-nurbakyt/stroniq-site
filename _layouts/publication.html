@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<div class="inner">
+  <div class="breadcrumbs">
+    <a href="{{ '/' | relative_url }}">Stroniq</a> /
+    <a href="{{ '/publications/' | relative_url }}">Публикации</a> /
+    {{ page.title | truncate: 46 }}
+  </div>
+
+  <div class="pagehead" style="border-bottom:0;padding-bottom:0">
+    <span class="kicker">{{ page.category | default: "НОРМЫ" }}</span>
+    <h1 style="margin-top:12px">{{ page.title }}</h1>
+    <div class="artmeta">
+      <span>{{ page.norm }}</span>
+      <span>{{ page.date | date: "%d.%m.%Y" }}</span>
+      <span>{{ page.reading_time | default: 7 }} мин чтения</span>
+    </div>
+  </div>
+
+  <article class="article">
+    {{ content }}
+
+    {% if page.calc %}
+    <div class="tocalc">
+      <span class="lbl">Проверить расчёт</span>
+      <h3>{{ page.calc_title }}</h3>
+      <p>Если не хотите собирать расчёт вручную — калькулятор Stroniq выполнит его
+      и сформирует отчёт с ходом вычислений.</p>
+      <a class="btn solid" href="{{ page.calc }}" target="_blank" rel="noopener">Открыть калькулятор <span class="ar">→</span></a>
+    </div>
+    {% endif %}
+
+    <p style="margin-top:36px;color:var(--muted);font-size:14.5px">Материал носит
+    методический характер и не заменяет норматив. Значения и карты районирования
+    принимайте по действующей редакции СП РК EN с национальным приложением.</p>
+
+    <div class="nextpost">
+      {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title | truncate: 42 }}</a>{% else %}<span></span>{% endif %}
+      <a href="{{ '/publications/' | relative_url }}">Все публикации</a>
+      {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title | truncate: 42 }} →</a>{% endif %}
+    </div>
+  </article>
+</div>

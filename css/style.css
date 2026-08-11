@@ -1,210 +1,361 @@
 /* ═══════════════════════════════════════════════════════════════
-   Stroniq — статический сайт. Визуальный язык: чертёжный лист.
-   Палитра: бумага #F4F6F3 · тушь #1B2A32 · чертёжная синь #164B9E
-            · снег/лёд #DDE9F2 · сетка миллиметровки #E3E8E1
-   Шрифты: Unbounded (дисплей, дозированно) · Manrope (текст)
-           · JetBrains Mono (формулы, данные, штамп)
-   Подпись дизайна: рамка листа + штамп, как на КМ-чертеже.
+   STRONIQ — визуальная система
+   Направление: engineering drawing × modern digital editorial
+   Рамка листа и штамп сохранены, но облегчены: тонкая линия,
+   почти невидимая миллиметровка, без тяжёлых теней.
+   Акцент #E8752A — дозированно: CTA, hover, техн. подписи, схемы.
    ═══════════════════════════════════════════════════════════════ */
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root{
-  --paper:#F4F6F3; --ink:#1B2A32; --blue:#164B9E; --ice:#DDE9F2;
-  --grid:#E3E8E1; --muted:#5A6B72; --line:#C9D2CC;
-  --disp:'Unbounded',sans-serif; --body:'Manrope',sans-serif;
+  --bg:#F7F6F2;
+  --ink:#171717;
+  --muted:#777777;
+  --line:#C9C7C1;
+  --accent:#E8752A;
+  --accent-soft:rgba(232,117,42,.08);
+  --paper:#FFFFFF;
+
+  --disp:'Space Grotesk',sans-serif;
+  --body:'Manrope',sans-serif;
   --mono:'JetBrains Mono',monospace;
+
+  --sheet:1120px;
+  --pad:clamp(20px,5vw,72px);
+  --read:720px;              /* максимальная ширина текста */
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  font-family:var(--body);color:var(--ink);background:var(--paper);
-  /* миллиметровка */
+  font-family:var(--body);color:var(--ink);background:var(--bg);
+  font-size:17px;line-height:1.7;
+  /* миллиметровка — почти незаметная */
   background-image:
-    linear-gradient(var(--grid) 1px,transparent 1px),
-    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:24px 24px;
-  line-height:1.65;font-size:17px;
+    linear-gradient(rgba(201,199,193,.20) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,199,193,.20) 1px,transparent 1px);
+  background-size:32px 32px;
 }
-/* Рамка чертёжного листа */
-.sheet{max-width:1080px;margin:24px auto;background:#fff;
-  border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(27,42,50,.12);}
-.inner{padding:0 48px}
-@media(max-width:720px){.inner{padding:0 20px}.sheet{margin:10px}}
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+::selection{background:var(--accent-soft)}
 
-/* Шапка-штамп */
-header.stamp{display:flex;justify-content:space-between;align-items:stretch;
-  border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:13px}
-header.stamp .brand{padding:14px 48px;font-family:var(--disp);font-weight:700;
-  font-size:20px;letter-spacing:.04em}
-header.stamp .brand a{color:var(--ink);text-decoration:none}
-header.stamp .brand .dot{color:var(--blue)}
-header.stamp nav{display:flex}
-header.stamp nav a{display:flex;align-items:center;padding:0 18px;color:var(--ink);
-  text-decoration:none;border-left:1px solid var(--ink)}
-header.stamp nav a:hover,header.stamp nav a:focus-visible{background:var(--ice)}
-header.stamp nav a.cta{background:var(--blue);color:#fff;font-weight:600}
-header.stamp nav a.cta:hover{background:#0F3B80}
-@media(max-width:720px){header.stamp{flex-direction:column}
-  header.stamp .brand{padding:12px 20px}
-  header.stamp nav a{flex:1;justify-content:center;padding:10px 8px;border-left:0;border-top:1px solid var(--ink)}}
+/* ── Лист: тонкая рамка, без тени ───────────────────────────── */
+.sheet{
+  max-width:var(--sheet);margin:0 auto;background:var(--paper);
+  border-left:1px solid var(--line);border-right:1px solid var(--line);
+  min-height:100vh;
+}
+.inner{padding:0 var(--pad)}
+.narrow{max-width:var(--read)}
 
-/* Герой */
-.hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
-.hero .eyebrow{font-family:var(--mono);font-size:13px;color:var(--blue);
-  letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
-.hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4.6vw,44px);
-  line-height:1.18;max-width:18ch}
-.hero p.lead{margin-top:20px;max-width:56ch;font-size:19px;color:var(--muted)}
-.hero .actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-block;padding:13px 26px;font-weight:700;text-decoration:none;
-  font-family:var(--body);border:2px solid var(--ink)}
-.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
-.btn.primary:hover{background:#0F3B80;border-color:#0F3B80}
-.btn.ghost{color:var(--ink);background:#fff}
-.btn.ghost:hover{background:var(--ice)}
-.btn:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+/* ── Шапка-штамп: аккуратная, sticky ────────────────────────── */
+.topbar{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .bar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding:0 var(--pad);height:68px;
+}
+.wordmark{
+  display:inline-flex;align-items:center;gap:0;
+  font-family:var(--disp);font-weight:700;font-size:23px;
+  letter-spacing:.15em;text-decoration:none;color:var(--ink);line-height:1;
+}
+/* Буква T заменена на инженерный узел — часть самой типографики */
+.wordmark .nodeT{height:.7em;width:.6em;margin:0 .15em 0 .05em;display:block;flex:none;
+  align-self:flex-start;position:relative;top:.15em}
+.wordmark .nodeT .bar{fill:currentColor}
+.wordmark .nodeT .stem{fill:var(--accent)}
 
-/* Формула в герое — как строка из записки */
-.formula{margin-top:34px;font-family:var(--mono);font-size:14px;color:var(--muted);
-  border-left:3px solid var(--blue);padding:8px 14px;background:var(--ice);max-width:640px;overflow-x:auto;white-space:nowrap}
+.wordmark .nodeT .pin{fill:#fff;stroke:var(--accent);stroke-width:7}
+/* Крупный wordmark в hero */
+.hero .wm{display:inline-flex;align-items:center;font-family:var(--disp);font-weight:700;
+  font-size:clamp(16px,1.7vw,19px);letter-spacing:.26em;color:var(--ink);
+  margin-bottom:20px;line-height:1}
+.hero .wm .nodeT{height:.7em;width:.6em;margin:0 .24em 0 .07em;display:block;flex:none;
+  align-self:flex-start;position:relative;top:.15em}
+.hero .wm .nodeT .bar{fill:currentColor}
+.hero .wm .nodeT .stem{fill:var(--accent)}
 
-/* Секции */
-section{padding:52px 0;border-bottom:1px solid var(--line)}
-section:last-of-type{border-bottom:0}
-h2{font-family:var(--disp);font-weight:500;font-size:clamp(20px,3vw,28px);margin-bottom:8px}
-.kicker{font-family:var(--mono);font-size:12px;color:var(--blue);
-  letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:10px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
-@media(max-width:720px){.grid2{grid-template-columns:1fr}}
-.card{border:1.5px solid var(--ink);padding:24px;background:#fff}
-.card h3{font-size:19px;margin-bottom:8px}
-.card .tag{font-family:var(--mono);font-size:12px;color:var(--blue)}
-.card p{color:var(--muted);font-size:15.5px;margin-top:8px}
-.card ul{margin:12px 0 0 18px;color:var(--muted);font-size:15px}
-.card a.more{display:inline-block;margin-top:14px;color:var(--blue);font-weight:700;text-decoration:none}
-.card a.more:hover{text-decoration:underline}
+.hero .wm .nodeT .pin{fill:#fff;stroke:var(--accent);stroke-width:7}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a{
+  font-size:15px;text-decoration:none;color:var(--ink);position:relative;
+  padding:4px 0;transition:color .2s ease;
+}
+.nav a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+  background:var(--accent);transition:width .28s ease;
+}
+.nav a:hover{color:var(--accent)}
+.nav a:hover::after{width:100%}
+.nav a.cta{
+  font-family:var(--mono);font-size:13px;letter-spacing:.02em;
+  border:1px solid var(--ink);padding:9px 16px;transition:all .22s ease;
+}
+.nav a.cta::after{display:none}
+.nav a.cta:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.burger{display:none;width:40px;height:40px;border:1px solid var(--line);
+  background:none;cursor:pointer;position:relative}
+.burger span{position:absolute;left:11px;width:18px;height:1.5px;background:var(--ink);
+  transition:transform .25s ease,opacity .2s ease}
+.burger span:nth-child(1){top:15px}
+.burger span:nth-child(2){top:20px}
+.burger span:nth-child(3){top:25px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
 
-/* Список статей */
-.posts{margin-top:22px;display:grid;gap:0;border:1.5px solid var(--ink);background:#fff}
-.posts a{display:flex;justify-content:space-between;gap:18px;padding:18px 22px;
-  color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
-.posts a:last-child{border-bottom:0}
-.posts a:hover{background:var(--ice)}
-.posts .q{font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
-@media(max-width:720px){.posts a{flex-direction:column;gap:6px}.posts .q{white-space:normal}}
+@media(max-width:860px){
+  .burger{display:block}
+  .nav{
+    position:absolute;top:68px;left:0;right:0;background:var(--paper);
+    border-bottom:1px solid var(--line);flex-direction:column;
+    align-items:stretch;gap:0;padding:8px var(--pad) 20px;display:none;
+  }
+  .nav.open{display:flex}
+  .nav a{padding:14px 0;border-bottom:1px solid var(--line);font-size:17px}
+  .nav a.cta{margin-top:16px;text-align:center;justify-content:center;border:1px solid var(--ink)}
+}
 
-/* Статья */
-article{padding:56px 0}
-article h1{font-family:var(--disp);font-weight:700;font-size:clamp(24px,3.6vw,36px);line-height:1.22;max-width:26ch}
-article .meta{font-family:var(--mono);font-size:13px;color:var(--muted);margin:14px 0 34px}
-article h2{margin:40px 0 12px}
-article h3{margin:28px 0 10px;font-size:19px}
-article p{margin:14px 0;max-width:72ch}
-article ul,article ol{margin:14px 0 14px 22px;max-width:70ch}
-article li{margin:6px 0}
-article .frm{font-family:var(--mono);font-size:15px;background:var(--ice);
-  border-left:3px solid var(--blue);padding:12px 16px;margin:18px 0;overflow-x:auto}
-article table{border-collapse:collapse;margin:18px 0;font-size:15px;width:100%;max-width:640px}
-article th,article td{border:1px solid var(--ink);padding:8px 12px;text-align:left}
-article th{background:var(--ice);font-family:var(--mono);font-size:13px}
-article .note{border:1.5px dashed var(--blue);padding:14px 18px;margin:22px 0;
-  background:#fff;font-size:15.5px}
-.appbox{border:2px solid var(--blue);background:var(--ice);padding:22px;margin:34px 0}
-.appbox p{margin:0 0 12px}
+/* ── Типографика ────────────────────────────────────────────── */
+h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.14;letter-spacing:-.01em}
+h1{font-size:clamp(38px,7vw,76px)}
+h2{font-size:clamp(24px,3.4vw,38px)}
+h3{font-size:19px;font-weight:500}
+p{max-width:var(--read)}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--muted);line-height:1.6}
 
-/* Штамп-подвал (title block) */
-footer.stamp{border-top:2px solid var(--ink);font-family:var(--mono);font-size:12.5px}
-footer.stamp .row{display:grid;grid-template-columns:2fr 1fr 1fr;border-bottom:1px solid var(--ink)}
-footer.stamp .row:last-child{border-bottom:0}
-footer.stamp .cell{padding:10px 16px;border-right:1px solid var(--ink)}
-footer.stamp .cell:last-child{border-right:0}
-footer.stamp .lbl{display:block;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-footer.stamp a{color:var(--blue);text-decoration:none}
-footer.stamp a:hover{text-decoration:underline}
-@media(max-width:720px){footer.stamp .row{grid-template-columns:1fr}
-  footer.stamp .cell{border-right:0;border-bottom:1px solid var(--line)}}
-.breadcrumbs{font-family:var(--mono);font-size:13px;padding-top:26px}
-.breadcrumbs a{color:var(--blue);text-decoration:none}
+/* Технические подписи */
+.kicker{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);display:block;
+}
+.techline{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+}
 
-/* ── Редизайн: карточки статей и факты (главная-лайт) ───────── */
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
-@media(max-width:720px){.grid3{grid-template-columns:1fr}}
-.fact{border-left:3px solid var(--blue);background:#fff;padding:16px 18px}
-.fact b{display:block;font-size:16px;margin-bottom:4px}
-.fact span{color:var(--muted);font-size:14px}
+/* ── Секции ─────────────────────────────────────────────────── */
+section{padding:clamp(64px,9vw,116px) 0;border-top:1px solid var(--line)}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;margin-bottom:14px}
+@media(max-width:820px){.sechead{flex-direction:column;align-items:flex-start;gap:10px}
+  .sechead .btn{order:3}}
 
-.postcards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
-@media(max-width:900px){.postcards{grid-template-columns:1fr}}
-.postcard{display:flex;flex-direction:column;gap:8px;border:1.5px solid var(--ink);
-  background:#fff;padding:20px;color:var(--ink);text-decoration:none;
-  transition:transform .12s ease, box-shadow .12s ease}
-.postcard:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(27,42,50,.15)}
-@media (prefers-reduced-motion:reduce){.postcard{transition:none}.postcard:hover{transform:none}}
-.postcard h3{font-size:17px;line-height:1.35}
-.postcard p{color:var(--muted);font-size:14px;flex:1}
-.postcard .tag{font-family:var(--mono);font-size:11.5px;color:var(--blue)}
-.postcard .more{color:var(--blue);font-weight:700;font-size:14px}
+/* ── Кнопки ─────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+  font-family:var(--body);font-weight:600;font-size:15.5px;
+  padding:14px 26px;border:1px solid var(--ink);color:var(--ink);
+  background:none;transition:all .22s ease;
+}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.solid:hover{background:#D3651C;border-color:#D3651C}
+.btn .ar{transition:transform .22s ease}
+.btn:hover .ar{transform:translateX(4px)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-/* ── Калькулятор (перенесено из calc.html) ───────────────────── */
-.calcwrap{border:2px solid var(--ink);margin:22px 0 28px;background:#fff}
-.calcwrap iframe{display:block;width:100%;height:82vh;min-height:640px;border:0}
-.calcbar{display:flex;justify-content:space-between;align-items:center;gap:12px;
-  padding:10px 16px;border-bottom:2px solid var(--ink);
-  font-family:var(--mono);font-size:13px;flex-wrap:wrap}
-.calcbar a{color:var(--blue);text-decoration:none;font-weight:600}
-.calcbar a:hover{text-decoration:underline}
+/* ── HERO ───────────────────────────────────────────────────── */
+.hero{position:relative;padding:clamp(52px,7vw,92px) 0 clamp(44px,5.5vw,76px)}
 
-/* ═══ Редизайн v2: живой геро, анимации, reveal ═══════════════ */
-/* Геро в две колонки: текст + анимированная схема */
-.hero2{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;
-  padding:64px 0 52px;border-bottom:1px solid var(--line)}
-@media(max-width:860px){.hero2{grid-template-columns:1fr;padding:44px 0 40px}}
-.hero2 h1{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4.2vw,42px);line-height:1.16}
-.hero2 .lead{margin-top:18px;max-width:52ch;font-size:18px;color:var(--muted)}
-.hero2 .actions{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
-.heroviz{border:2px solid var(--ink);background:#fff;box-shadow:6px 6px 0 rgba(22,75,158,.14)}
-.heroviz svg{display:block;width:100%;height:auto}
+.hero-content{position:relative;z-index:1}
+.hero h1{max-width:none;font-size:clamp(27px,4.3vw,53px);line-height:1.07;
+  letter-spacing:-.015em}
+@media(min-width:1000px){.hero h1{white-space:nowrap}}
+/* Нижний ряд hero: слева текст и кнопки, справа схема с воздухом до края */
+.herorow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,414px);
+  gap:clamp(28px,5vw,72px);align-items:start;margin-top:30px;
+  padding-right:clamp(0px,3vw,56px)}
+@media(max-width:900px){.herorow{grid-template-columns:1fr;padding-right:0;gap:22px}
+  .herorow .viz{max-width:340px;margin:6px auto 0}}
+.viz{width:100%;margin-top:-14px}
+.viz svg{width:100%;height:auto;display:block}
+.hero .lead{margin-top:20px;max-width:46ch;font-size:17px}
+.hero .actions{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
+.hero .techline{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
+  max-width:var(--read)}
 
-/* Анимации схемы */
-@keyframes drawin{to{stroke-dashoffset:0}}
-.draw{stroke-dasharray:1200;stroke-dashoffset:1200;animation:drawin 1.8s ease .2s forwards}
-@keyframes windmove{to{stroke-dashoffset:-56}}
-.windline{stroke-dasharray:10 8;animation:windmove 1.1s linear infinite}
-@keyframes fall{
-  0%{transform:translateY(-30px);opacity:0}
-  12%{opacity:1}
-  100%{transform:translateY(150px);opacity:0}}
-.flake{animation:fall 4.2s linear infinite}
-.flake.f2{animation-duration:5.4s;animation-delay:1.1s}
-.flake.f3{animation-duration:4.8s;animation-delay:2.3s}
-.flake.f4{animation-duration:6s;animation-delay:.6s}
-@keyframes pulse{0%,100%{opacity:.85}50%{opacity:.35}}
-.loadarrow{animation:pulse 2.4s ease-in-out infinite}
+/* Ступенчатое появление hero */
+.rise{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.22,.7,.3,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.20s}.d3{animation-delay:.34s}
+.d4{animation-delay:.48s}.d5{animation-delay:.62s}
+@keyframes rise{to{opacity:1;transform:none}}
+.drw{stroke-dasharray:900;stroke-dashoffset:900;animation:drw 2.6s ease .4s forwards}
+@keyframes drw{to{stroke-dashoffset:0}}
+/* ── Цикл анимации схемы: 18 с, спокойно, с паузой и повтором ───
+   1 контур → 2 внутренние линии → 3 ветер → 4 формула ветра
+   → 5 стрелки снега → 6 частицы → 7 формула снега → 8 пауза → повтор */
+.cyc{animation-duration:13s;animation-iteration-count:infinite;
+  animation-timing-function:linear}
+@keyframes ph-draw{
+  0%,1%{stroke-dashoffset:760;opacity:0}
+  3%{opacity:1}
+  11%{stroke-dashoffset:0}
+  86%{stroke-dashoffset:0;opacity:1}
+  95%,100%{opacity:0;stroke-dashoffset:0}}
+@keyframes ph-lines{0%,11%{opacity:0}18%{opacity:1}86%{opacity:1}95%,100%{opacity:0}}
+@keyframes ph-wind {0%,22%{opacity:0}28%{opacity:1}88%{opacity:1}96%,100%{opacity:0}}
+@keyframes ph-fw   {0%,32%{opacity:0}38%{opacity:1}88%{opacity:1}96%,100%{opacity:0}}
+@keyframes ph-snarr{0%,38%{opacity:0}44%{opacity:1}86%{opacity:1}95%,100%{opacity:0}}
+@keyframes ph-part {0%,54%{opacity:0}60%{opacity:1}88%{opacity:1}96%,100%{opacity:0}}
+@keyframes ph-fs   {0%,66%{opacity:0}72%{opacity:1}88%{opacity:1}96%,100%{opacity:0}}
+.p-draw{animation-name:ph-draw;stroke-dasharray:760}
+.p-lines{animation-name:ph-lines;opacity:0}
+.p-wind{animation-name:ph-wind;opacity:0}
+.p-fw{animation-name:ph-fw;opacity:0}
+.p-snarr{animation-name:ph-snarr;opacity:0}
+.p-part{animation-name:ph-part;opacity:0}
+.p-fs{animation-name:ph-fs;opacity:0}
+/* Движение внутри фаз (группа гасится циклом, движение — своё) */
+@keyframes windflow{to{stroke-dashoffset:-64}}
+.wind{stroke-dasharray:13 9;animation:windflow 4s linear infinite}
+@keyframes drift{
+  0%{transform:translateY(0);opacity:0}
+  14%{opacity:.9}
+  92%{opacity:.55}
+  100%{transform:translateY(74px);opacity:0}}
+.flake{animation:drift 6.5s linear infinite}
+.f2{animation-duration:8s;animation-delay:1.6s}
+.f3{animation-duration:7.2s;animation-delay:3.2s}
+.f4{animation-duration:8.6s;animation-delay:.8s}
+.f5{animation-duration:7s;animation-delay:4.4s}
 
-/* Появление секций при скролле */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+/* ── Карточки калькуляторов ─────────────────────────────────── */
+.tool{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);
+  align-items:center;padding:clamp(30px,4vw,52px) 0;border-top:1px solid var(--line);
+}
+.tool .norm{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.08em}
+.tool h3{font-size:clamp(22px,2.6vw,30px);font-weight:700;margin:10px 0 14px}
+.tool p{color:var(--muted);font-size:16px}
+.tool .caps{font-family:var(--mono);font-size:12.5px;color:var(--muted);
+  line-height:1.9;margin-top:16px;letter-spacing:.02em}
+.tool .caps b{color:var(--accent);font-weight:400}
+.tool .btn{margin-top:26px}
+.shot{border:1px solid var(--line);background:var(--bg);aspect-ratio:4/3;overflow:hidden}
+.shot svg{width:100%;height:100%;display:block}
+@media(max-width:820px){.tool{grid-template-columns:1fr;gap:24px}
+  .tool .shot{order:-1}}
+
+/* ── Публикации ─────────────────────────────────────────────── */
+.pubs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:34px}
+@media(max-width:820px){.pubs{grid-template-columns:1fr}}
+.pub{
+  background:var(--paper);padding:28px 26px 24px;text-decoration:none;
+  display:flex;flex-direction:column;gap:12px;min-height:230px;
+  transition:background .25s ease;
+}
+.pub:hover{background:var(--accent-soft)}
+.pub .cat{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent)}
+.pub h3{font-size:18px;font-weight:700;line-height:1.3}
+.pub p{color:var(--muted);font-size:14.5px;flex:1;line-height:1.55}
+.pub .meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+
+/* ── Философия ──────────────────────────────────────────────── */
+.principle{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
+@media(max-width:820px){.principle{grid-template-columns:1fr}}
+.plist{list-style:none}
+.plist li{padding:15px 0;border-bottom:1px solid var(--line);color:var(--muted);
+  font-size:15.5px;display:flex;gap:14px;align-items:baseline}
+.plist li:first-child{border-top:1px solid var(--line)}
+.plist .n{font-family:var(--mono);font-size:12px;color:var(--accent);flex:none}
+
+/* ── Финальный CTA ──────────────────────────────────────────── */
+.final{padding:clamp(52px,6.5vw,84px) 0}
+.final h2{max-width:24ch;font-size:clamp(22px,2.6vw,31px)}
+.final .actions{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
+
+/* ── Подвал-штамп ───────────────────────────────────────────── */
+.foot{border-top:1px solid var(--ink)}
+.foot .grid{display:grid;grid-template-columns:2fr 1fr 1fr;
+  border-bottom:1px solid var(--line)}
+.foot .cell{padding:26px var(--pad);border-right:1px solid var(--line)}
+.foot .cell:last-child{border-right:0}
+.foot .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px}
+.foot a{color:var(--ink);text-decoration:none;display:block;padding:3px 0;font-size:15px;
+  transition:color .2s ease}
+.foot a:hover{color:var(--accent)}
+.foot .copy{padding:18px var(--pad);font-family:var(--mono);font-size:12px;color:var(--muted);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:760px){.foot .grid{grid-template-columns:1fr}
+  .foot .cell{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* ── Появление при скролле ──────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(22px);
+  transition:opacity .65s cubic-bezier(.22,.7,.3,1),transform .65s cubic-bezier(.22,.7,.3,1)}
 .reveal.on{opacity:1;transform:none}
 
-/* Лента-CTA внизу главной */
-.ctastrip{background:var(--blue);color:#fff;padding:38px 40px;margin:52px 0;
-  display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-.ctastrip h2{color:#fff;margin:0;font-size:clamp(19px,2.6vw,26px)}
-.ctastrip .btn{background:#fff;color:var(--blue);border-color:#fff}
-.ctastrip .btn:hover{background:var(--ice)}
-
-/* Страница «О проекте» */
-.aboutgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:24px}
-@media(max-width:760px){.aboutgrid{grid-template-columns:1fr}}
-.timeline{border-left:3px solid var(--blue);margin:24px 0;padding-left:22px}
-.timeline .tl{position:relative;padding:10px 0}
-.timeline .tl::before{content:"";position:absolute;left:-29px;top:18px;width:11px;height:11px;
-  background:var(--paper);border:3px solid var(--blue);border-radius:50%}
-.timeline .tl b{font-family:var(--mono);font-size:13px;color:var(--blue);display:block}
-.timeline .tl.done::before{background:var(--blue)}
-
 @media (prefers-reduced-motion:reduce){
-  .draw,.windline,.flake,.loadarrow{animation:none}
-  .draw{stroke-dashoffset:0}
+  html{scroll-behavior:auto}
+  .rise,.drw,.wind,.flake,.cyc{animation:none!important;opacity:1;transform:none;
+    stroke-dashoffset:0}
   .reveal{opacity:1;transform:none;transition:none}
+  .btn,.pub,.nav a{transition:none}
 }
+
+/* ═══ Внутренние страницы: единый язык ═══════════════════════ */
+.pagehead{padding:clamp(48px,6vw,84px) 0 clamp(28px,3.4vw,44px);border-bottom:1px solid var(--line)}
+.pagehead h1{font-size:clamp(28px,4vw,48px);max-width:20ch;line-height:1.1}
+.pagehead .lead{margin-top:18px;max-width:60ch}
+.breadcrumbs{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted);
+  padding-top:26px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+
+/* Индекс публикаций — editorial-список */
+.pubindex{border-top:1px solid var(--line);margin:34px 0 0}
+.pubrow{display:grid;grid-template-columns:130px 1fr 128px;gap:24px;align-items:baseline;
+  padding:26px 0;border-bottom:1px solid var(--line);text-decoration:none;
+  transition:background .22s ease}
+.pubrow:hover{background:var(--accent-soft)}
+.pubrow .cat{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent)}
+.pubrow h2{font-family:var(--disp);font-size:20px;font-weight:700;line-height:1.3;margin-bottom:6px}
+.pubrow p{color:var(--muted);font-size:15px;max-width:64ch}
+.pubrow .meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:right}
+@media(max-width:760px){.pubrow{grid-template-columns:1fr;gap:8px}
+  .pubrow .meta{text-align:left}}
+
+/* Статья */
+.article{padding:clamp(34px,4vw,56px) 0 clamp(48px,6vw,80px);max-width:var(--read)}
+.article h2{font-size:clamp(21px,2.4vw,27px);margin:38px 0 12px}
+.article h3{font-size:18px;font-weight:700;margin:26px 0 8px}
+.article p{margin:14px 0}
+.article ul,.article ol{margin:14px 0 14px 22px}
+.article li{margin:6px 0;color:var(--ink)}
+.article strong{font-weight:700}
+.article table{border-collapse:collapse;margin:20px 0;font-size:15px;width:100%}
+.article th,.article td{border:1px solid var(--line);padding:9px 13px;text-align:left}
+.article th{background:var(--bg);font-family:var(--mono);font-size:12.5px;font-weight:500}
+.artmeta{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;
+  color:var(--muted);margin-top:16px}
+.artmeta .cat{color:var(--accent);letter-spacing:.14em}
+/* CTA из статьи в калькулятор */
+.tocalc{border:1px solid var(--ink);padding:26px 28px;margin:44px 0 0}
+.tocalc .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent);
+  text-transform:uppercase}
+.tocalc h3{font-family:var(--disp);font-size:19px;font-weight:700;margin:10px 0 8px}
+.tocalc p{color:var(--muted);font-size:15px;margin-bottom:18px}
+.nextpost{border-top:1px solid var(--line);margin-top:52px;padding-top:26px;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12.5px}
+.nextpost a{color:var(--ink);text-decoration:none}
+.nextpost a:hover{color:var(--accent)}
+
+/* Страница калькулятора */
+.calchead{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);
+  align-items:center;padding:clamp(34px,4vw,56px) 0}
+@media(max-width:820px){.calchead{grid-template-columns:1fr}.calchead .shot{order:-1}}
+.specs{border-top:1px solid var(--line);margin-top:8px}
+.specs div{display:grid;grid-template-columns:180px 1fr;gap:20px;padding:14px 0;
+  border-bottom:1px solid var(--line);font-size:15.5px}
+.specs dt,.specs .k{font-family:var(--mono);font-size:12.5px;color:var(--muted);
+  letter-spacing:.04em;text-transform:uppercase}
+.specs .v{color:var(--ink)}
+@media(max-width:600px){.specs div{grid-template-columns:1fr;gap:4px}}

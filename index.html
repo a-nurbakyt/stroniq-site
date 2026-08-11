@@ -1,128 +1,192 @@
 ---
 layout: default
-title: Stroniq — сбор нагрузок по СП РК EN онлайн, ветер и снег с отчётом
-description: Бесплатный калькулятор ветровой (EN 1991-1-4) и снеговой (EN 1991-1-3) нагрузки по СП РК. Зоны Казахстана, схемы, отчёт PDF/Word/Excel.
+title: "Stroniq — расчёты, нормы, проектирование"
+description: "Инженерные калькуляторы и публикации для конструкторов: расчёт ветровой и снеговой нагрузки по СП РК EN, разборы нормативов и практические материалы по проектированию."
 ---
-<div class="inner">
 
-<div class="hero2">
-  <div>
-    <div class="eyebrow">СП РК EN 1991 · Еврокоды Казахстана</div>
-    <h1>Сбор нагрузок — за минуты, а не за полдня</h1>
-    <p class="lead">Бесплатный калькулятор ветровой и снеговой нагрузки по СП РК.
-    Схемы, коэффициенты и отчёт с ходом расчёта — как в записке.</p>
-    <div class="actions">
-      <a class="btn primary" href="{{ '/calc.html' | relative_url }}">Рассчитать нагрузку</a>
-      <a class="btn ghost" href="{{ '/about.html' | relative_url }}">О проекте</a>
+<!-- ══════ HERO ══════ -->
+<div class="hero">
+  <div class="inner hero-content">
+    <span class="wm rise d1" aria-label="Stroniq">
+      <span aria-hidden="true">S</span>
+      <svg class="nodeT" viewBox="0 0 104 120" aria-hidden="true">
+        <path class="bar" d="M0 0h104v18H0z"/>
+        <path class="stem" d="M40 16h24v104H40z"/>
+        <circle class="pin" cx="52" cy="34" r="13"/>
+      </svg>
+      <span aria-hidden="true">RONIQ</span>
+    </span>
+
+    <h1 class="rise d2">Расчёты. Нормы. Проектирование.</h1>
+
+    <div class="herorow">
+      <div>
+        <p class="lead rise d3">Инженерные калькуляторы, разборы нормативов и практические
+        материалы для расчёта строительных конструкций.</p>
+        <div class="actions rise d4">
+          <a class="btn solid" href="{{ site.app_url }}" target="_blank" rel="noopener">Калькуляторы <span class="ar">→</span></a>
+          <a class="btn" href="{{ '/publications/' | relative_url }}">Публикации <span class="ar">→</span></a>
+        </div>
+      </div>
+
+      <!-- Инженерная схема: цикл ветер → снег, без сетки -->
+      <div class="viz rise d5">
+        <svg viewBox="0 0 400 320" aria-hidden="true">
+          <!-- 1 контур каркаса -->
+          <g fill="none" stroke="#171717" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+            <path class="cyc p-draw" d="M116 264V176l106-56 106 56v88"/>
+          </g>
+          <!-- 2 внутренние конструктивные оси и отмостка -->
+          <g class="cyc p-lines" opacity="0">
+            <g fill="none" stroke="#171717" stroke-width="1.4">
+              <path d="M116 222h212M169 264V204M222 264V148M275 264V204"/>
+            </g>
+            <path d="M88 264h272" stroke="#171717" stroke-width="2.6"/>
+            <g stroke="#171717" stroke-width="1.2">
+              <path d="M100 264l-9 12M124 264l-9 12M148 264l-9 12M172 264l-9 12M196 264l-9 12M220 264l-9 12M244 264l-9 12M268 264l-9 12M292 264l-9 12M316 264l-9 12M340 264l-9 12M360 264l-9 12"/>
+            </g>
+          </g>
+          <!-- 3 ветер -->
+          <g class="cyc p-wind">
+            <g stroke="#E8752A" stroke-width="1.8" fill="none">
+              <path class="wind" d="M18 194h74"/>
+              <path class="wind" d="M8 224h84" style="animation-delay:1.2s"/>
+              <path class="wind" d="M24 254h68" style="animation-delay:2.1s"/>
+            </g>
+            <g fill="#E8752A">
+              <path d="M106 194l-13-6.5v13zM106 224l-13-6.5v13zM106 254l-13-6.5v13z"/>
+            </g>
+          </g>
+          <!-- 4 формула ветра -->
+          <text class="cyc p-fw" x="6" y="156" font-family="JetBrains Mono,monospace"
+                font-size="12.5" fill="#171717">w = qp(z) · cpe</text>
+          <!-- 5 стрелки снеговой нагрузки -->
+          <g class="cyc p-snarr" stroke="#171717" stroke-width="1.8" fill="#171717">
+            <path d="M169 92v30M169 126l-5-9h10z"/>
+            <path d="M222 76v30M222 110l-5-9h10z"/>
+            <path d="M275 92v30M275 126l-5-9h10z"/>
+          </g>
+          <!-- 6 частицы снега -->
+          <g class="cyc p-part" fill="#8A8A85">
+            <circle class="flake"    cx="150" cy="46" r="2.6"/>
+            <circle class="flake f2" cx="196" cy="28" r="2"/>
+            <circle class="flake f3" cx="242" cy="44" r="2.8"/>
+            <circle class="flake f4" cx="292" cy="26" r="2.1"/>
+            <circle class="flake f5" cx="222" cy="12" r="2.4"/>
+            <circle class="flake f3" cx="176" cy="18" r="1.8" style="animation-delay:7.4s"/>
+          </g>
+          <!-- 7 формула снега -->
+          <text class="cyc p-fs" x="238" y="72" font-family="JetBrains Mono,monospace"
+                font-size="12" fill="#171717">s = μ · Ce · Ct · sk</text>
+        </svg>
+      </div>
     </div>
-  </div>
 
-  <div class="heroviz" aria-hidden="true">
-    <!-- Анимированная схема: каркас под ветром и снегом -->
-    <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" role="img">
-      <rect width="560" height="420" fill="#fff"/>
-      <!-- миллиметровка -->
-      <g stroke="#E3E8E1" stroke-width="1">
-        <path d="M0 60H560M0 120H560M0 180H560M0 240H560M0 300H560M0 360H560"/>
-        <path d="M60 0V420M120 0V420M180 0V420M240 0V420M300 0V420M360 0V420M420 0V420M480 0V420"/>
-      </g>
-      <!-- земля -->
-      <line x1="60" y1="352" x2="500" y2="352" stroke="#1B2A32" stroke-width="2.5"/>
-      <g stroke="#1B2A32" stroke-width="1.4">
-        <path d="M80 352l-12 14M120 352l-12 14M160 352l-12 14M200 352l-12 14M240 352l-12 14M280 352l-12 14M320 352l-12 14M360 352l-12 14M400 352l-12 14M440 352l-12 14M480 352l-12 14"/>
-      </g>
-      <!-- каркас здания (прорисовывается) -->
-      <path class="draw" d="M160 352V232L300 176L440 232V352" fill="none"
-            stroke="#164B9E" stroke-width="4" stroke-linejoin="round"/>
-      <path class="draw" d="M160 300H440M230 352V204M370 352V204M300 352V176"
-            fill="none" stroke="#164B9E" stroke-width="1.6" style="animation-delay:.9s"/>
-      <!-- линии ветра -->
-      <g stroke="#5A8ED6" stroke-width="2.4" fill="none">
-        <path class="windline" d="M40 236H140"/>
-        <path class="windline" d="M28 272H140" style="animation-delay:.3s"/>
-        <path class="windline" d="M46 308H140" style="animation-delay:.6s"/>
-      </g>
-      <g fill="#5A8ED6">
-        <path d="M140 236l-12-6v12z"/><path d="M140 272l-12-6v12z"/><path d="M140 308l-12-6v12z"/>
-      </g>
-      <!-- стрелки снеговой нагрузки на скаты -->
-      <g class="loadarrow" stroke="#164B9E" stroke-width="2" fill="#164B9E">
-        <path d="M212 166v22"/><path d="M212 192l-5-8h10z"/>
-        <path d="M258 148v22"/><path d="M258 174l-5-8h10z"/>
-        <path d="M342 148v22"/><path d="M342 174l-5-8h10z"/>
-        <path d="M388 166v22"/><path d="M388 192l-5-8h10z"/>
-      </g>
-      <!-- снежинки -->
-      <g fill="#8FB6DB">
-        <circle class="flake"    cx="200" cy="70" r="4"/>
-        <circle class="flake f2" cx="260" cy="52" r="3"/>
-        <circle class="flake f3" cx="330" cy="66" r="4"/>
-        <circle class="flake f4" cx="390" cy="48" r="3"/>
-        <circle class="flake f2" cx="300" cy="40" r="2.6" style="animation-delay:2.8s"/>
-        <circle class="flake f3" cx="230" cy="44" r="2.6" style="animation-delay:3.6s"/>
-      </g>
-      <!-- подписи -->
-      <g font-family="JetBrains Mono,monospace" font-size="13" fill="#1B2A32">
-        <text x="40" y="212">w = qp(z)·cpe</text>
-        <text x="330" y="120">s = μ·Ce·Ct·sk</text>
-      </g>
-    </svg>
   </div>
 </div>
 
-<section class="reveal" id="about-teaser">
-  <span class="kicker">О проекте</span>
-  <h2>Инструмент расчётчика — от расчётчика</h2>
-  <div class="grid2" style="margin-top:18px">
-    <p style="color:var(--muted);font-size:17px;max-width:58ch">Stroniq делает
-    практикующий инженер-строитель из Алматы — из собственной усталости от ручного
-    сбора нагрузок под каждый объект. Никакого «чёрного ящика»: каждый коэффициент
-    со ссылкой на пункт СП РК EN, каждый результат можно проверить и защитить.</p>
-    <div>
-      <div class="fact"><b>Бесплатно и без регистрации</b><span>считайте сразу, отчёт — за email</span></div>
-      <div class="fact" style="margin-top:12px"><b>Ветер + снег уже работают</b><span>дальше — сочетания и сейсмика</span></div>
+<!-- ══════ КАЛЬКУЛЯТОРЫ ══════ -->
+<section class="reveal">
+  <div class="inner">
+    <div class="sechead">
+      <div>
+        <span class="kicker">Калькуляторы</span>
+        <h2 style="margin-top:12px">Инженерные инструменты</h2>
+      </div>
+    </div>
+    <p class="lead" style="margin-bottom:14px">Инструменты для автоматизации расчётов строительных нагрузок.</p>
+
+    <div class="tool">
+      <div>
+        <div class="norm">СП РК EN 1991-1-4</div>
+        <h3>Ветровая нагрузка</h3>
+        <p>Расчёт ветровых нагрузок на здания с учётом Национального приложения
+        Республики Казахстан.</p>
+        <div class="caps">Два направления <b>·</b> стены и кровли <b>·</b> схемы нагрузок
+        <b>·</b> формирование отчёта</div>
+        <a class="btn" href="{{ site.app_wind }}" target="_blank" rel="noopener">Рассчитать <span class="ar">→</span></a>
+      </div>
+      <div class="shot">
+        <svg viewBox="0 0 400 260" aria-hidden="true">
+          <rect width="400" height="260" fill="#F7F6F2"/>
+          <g stroke="#C9C7C1" stroke-width=".6" opacity=".4">
+            <path d="M0 52h400M0 104h400M0 156h400M0 208h400M80 0v260M160 0v260M240 0v260M320 0v260"/>
+          </g>
+          <path d="M130 232V116l100-56 100 56v116" fill="#fff" stroke="#171717" stroke-width="2.4" stroke-linejoin="round"/>
+          <g fill="none" stroke="#171717" stroke-width="1.2">
+            <path d="M130 172h200M180 232V144M230 232V88M280 232V144"/>
+          </g>
+          <path d="M110 232h240" stroke="#171717" stroke-width="2.2"/>
+          <g stroke="#171717" stroke-width="1"><path d="M120 232l-8 11M148 232l-8 11M176 232l-8 11M204 232l-8 11M232 232l-8 11M260 232l-8 11M288 232l-8 11M316 232l-8 11"/></g>
+          <g stroke="#E8752A" stroke-width="1.8" stroke-dasharray="10 7"><path d="M18 122h94M18 160h94M18 198h94"/></g>
+          <g fill="#E8752A"><path d="M122 122l-12-6v12zM122 160l-12-6v12zM122 198l-12-6v12z"/></g>
+          <text x="16" y="102" font-family="JetBrains Mono,monospace" font-size="12" fill="#171717">w = qp(z) · cpe</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div>
+        <div class="norm">СП РК EN 1991-1-3</div>
+        <h3>Снеговая нагрузка</h3>
+        <p>Расчёт снеговых нагрузок с учётом нормативных требований
+        Республики Казахстан.</p>
+        <div class="caps">Снеговые районы <b>·</b> коэффициенты формы <b>·</b> снеговые мешки
+        <b>·</b> отчёт</div>
+        <a class="btn" href="{{ site.app_snow }}" target="_blank" rel="noopener">Рассчитать <span class="ar">→</span></a>
+      </div>
+      <div class="shot">
+        <svg viewBox="0 0 400 260" aria-hidden="true">
+          <rect width="400" height="260" fill="#F7F6F2"/>
+          <g stroke="#C9C7C1" stroke-width=".6" opacity=".4">
+            <path d="M0 52h400M0 104h400M0 156h400M0 208h400M80 0v260M160 0v260M240 0v260M320 0v260"/>
+          </g>
+          <!-- эпюра: слева 0.5μ1, справа μ1 (несимметричная схема) -->
+          <path d="M66 140L200 78v-26L66 114z" fill="#E8752A" opacity=".22"/>
+          <path d="M200 78l134 62V88L200 52z" fill="#E8752A" opacity=".42"/>
+          <path d="M64 140L200 78l136 62" fill="none" stroke="#E8752A" stroke-width="1.4" opacity=".7"/>
+          <path d="M64 232V140L200 78l136 62v92" fill="#fff" fill-opacity="0" stroke="#171717" stroke-width="2.4" stroke-linejoin="round"/>
+          <g fill="none" stroke="#171717" stroke-width="1.2">
+            <path d="M64 186h272M132 232V158M200 232V110M268 232V158"/>
+          </g>
+          <path d="M44 232h312" stroke="#171717" stroke-width="2.2"/>
+          <g stroke="#171717" stroke-width="1"><path d="M56 232l-8 11M92 232l-8 11M128 232l-8 11M164 232l-8 11M200 232l-8 11M236 232l-8 11M272 232l-8 11M308 232l-8 11M344 232l-8 11"/></g>
+          <!-- стрелки нагрузок -->
+          <g stroke="#E8752A" stroke-width="1.8" fill="#E8752A">
+            <path d="M126 62v40M126 106l-5-9h10z"/>
+            <path d="M272 40v40M272 84l-5-9h10z"/>
+          </g>
+          <text x="94" y="34" font-family="JetBrains Mono,monospace" font-size="12" fill="#777">0.5μ1</text>
+          <text x="256" y="26" font-family="JetBrains Mono,monospace" font-size="12" fill="#777">μ1</text>
+          <text x="16" y="252" font-family="JetBrains Mono,monospace" font-size="12" fill="#171717">s = μ · Ce · Ct · sk</text>
+        </svg>
+      </div>
     </div>
   </div>
-  <p style="margin-top:20px"><a class="more" href="{{ '/about.html' | relative_url }}" style="color:var(--blue);font-weight:700;text-decoration:none">История и планы проекта →</a></p>
 </section>
 
-<section class="reveal" id="moduli">
-  <span class="kicker">Модули</span>
-  <div class="grid2">
-    <div class="card">
-      <span class="tag">СП РК EN 1991-1-4</span>
-      <h3>🌬️ Ветер</h3>
-      <p>Зоны РК → q<sub>p</sub>(z) → давления по зонам стен и кровли. Обе оси обдува, 4 типа кровли.</p>
-      <a class="more" href="{{ '/calc.html' | relative_url }}">Рассчитать →</a>
+<!-- ══════ ПУБЛИКАЦИИ ══════ -->
+<section class="reveal">
+  <div class="inner">
+    <div class="sechead">
+      <div>
+        <span class="kicker">Публикации</span>
+        <h2 style="margin-top:12px">Инженерные материалы</h2>
+      </div>
+      <a class="btn" href="{{ '/publications/' | relative_url }}">Все публикации <span class="ar">→</span></a>
     </div>
-    <div class="card">
-      <span class="tag">СП РК EN 1991-1-3</span>
-      <h3>❄️ Снег</h3>
-      <p>Зоны РК, снеговой мешок, ендова, перепады высот, чрезвычайный снег s<sub>Ad</sub>.</p>
-      <a class="more" href="{{ '/calc.html' | relative_url }}">Рассчитать →</a>
+    <p class="lead">Инженерные разборы, нормативные материалы и практические заметки
+    по проектированию конструкций.</p>
+
+    <div class="pubs">
+      {% for post in site.posts limit:3 %}
+      <a class="pub" href="{{ post.url | relative_url }}">
+        <span class="cat">{{ post.category | default: "НОРМЫ" }}</span>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.description }}</p>
+        <span class="meta">{{ post.date | date: "%d.%m.%Y" }} · {{ post.reading_time | default: 7 }} мин</span>
+      </a>
+      {% endfor %}
     </div>
   </div>
 </section>
-
-<section class="reveal" id="stati">
-  <span class="kicker">Публикации</span>
-  <h2>Разборы по нормам</h2>
-  <div class="postcards">
-    {% for post in site.posts limit:3 %}
-    <a class="postcard" href="{{ post.url | relative_url }}">
-      <span class="tag">{{ post.norm }}</span>
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.description }}</p>
-      <span class="more">Читать →</span>
-    </a>
-    {% endfor %}
-  </div>
-  <p style="margin-top:22px"><a class="btn ghost" href="{{ '/blog/' | relative_url }}">Все публикации</a></p>
-</section>
-
-<div class="ctastrip reveal">
-  <h2>Посчитайте ветер и снег для своего объекта прямо сейчас</h2>
-  <a class="btn" href="{{ '/calc.html' | relative_url }}">Открыть калькулятор</a>
-</div>
-
-</div>

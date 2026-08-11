@@ -1,8 +1,12 @@
 ---
-layout: post
+layout: publication
 title: "Ветровая нагрузка по СП РК EN 1991-1-4: методика от vb до давления по зонам"
 description: "Цепочка vb → vm(z) → qp(z) → we: базовая скорость, категории местности, пиковое давление и коэффициенты cpe."
 norm: "СП РК EN 1991-1-4"
+category: "НОРМЫ"
+reading_time: 6
+calc: "https://stroniq-constcalc.streamlit.app/%D0%92%D0%B5%D1%82%D0%B5%D1%80"
+calc_title: "Ветровая нагрузка по СП РК EN 1991-1-4"
 date: 2026-07-02
 ---
 
