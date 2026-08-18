@@ -359,3 +359,21 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   letter-spacing:.04em;text-transform:uppercase}
 .specs .v{color:var(--ink)}
 @media(max-width:600px){.specs div{grid-template-columns:1fr;gap:4px}}
+
+/* ═══ Иллюстрации и формулы в публикациях ════════════════════ */
+.article figure{margin:44px 0}
+.article figure img,.article figure svg{display:block;width:100%;height:auto;
+  border:1px solid var(--line)}
+.article figcaption{font-family:var(--mono);font-size:12.5px;color:var(--muted);
+  margin-top:12px;line-height:1.6}
+.article .formula{margin:26px 0;padding:20px 18px;border:1px solid var(--line);
+  background:var(--bg);overflow-x:auto}
+.article .katex-display{margin:0}
+.article a{color:var(--accent)}
+.article img{max-width:100%}
+
+/* Широкие таблицы в статьях — прокрутка вместо разъезжающейся вёрстки */
+.article table{display:block;overflow-x:auto;white-space:nowrap;max-width:100%}
+.article table td,.article table th{white-space:normal;min-width:78px}
+@media(max-width:600px){.article table{font-size:14px}
+  .article table td,.article table th{padding:8px 10px}}
